@@ -1,0 +1,13 @@
+streamlit
+pandas
+numpy
+matplotlib
+yfinance
+plotly==5.22.0
+datetime
+scipy
+openpyxl
+requests
+seaborn
+statsmodels
+fundamentus
