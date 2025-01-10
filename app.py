@@ -110,8 +110,8 @@ elif selected_tool == "Payoff de Opções":
         payoff = premio - np.maximum(strike - precos, 0)
 
     # Definindo intervalo expandido para o eixo y
-    y_min = payoff.min() * 10  
-    y_max = payoff.max() * 10  
+    y_min = payoff.min() * 1  
+    y_max = payoff.max() * 1  
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=precos, y=payoff, mode='lines', name='Payoff'))
