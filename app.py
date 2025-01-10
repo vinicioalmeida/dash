@@ -97,7 +97,7 @@ elif selected_tool == "Payoff de Opções":
     tipo_opcao = st.selectbox("Escolha o tipo de opção:", ["Compra de Call", "Venda de Call", "Compra de Put", "Venda de Put"])
     strike = st.number_input("Preço de Exercício (Strike):", min_value=0.0, step=0.01)
     premio = st.number_input("Prêmio da Opção:", min_value=0.0, step=0.01)
-    preco_ativo = st.slider("Intervalo de preços do ativo subjacente:", min_value=0.0, max_value=200.0, value=(0.0, 10.0), step=1.0)
+    preco_ativo = st.slider("Intervalo de preços do ativo subjacente:", min_value=0.0, max_value=200.0, value=(0.0, 100.0), step=1.0)
 
     precos = np.linspace(preco_ativo[0], preco_ativo[1], 500)
     if tipo_opcao == "Compra de Call":
