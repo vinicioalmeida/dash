@@ -109,12 +109,17 @@ elif selected_tool == "Payoff de Opções":
     elif tipo_opcao == "Venda de Put":
         payoff = premio - np.maximum(strike - precos, 0)
 
+        # Definindo intervalo expandido para o eixo y
+    y_min = payoff.min() - abs(payoff.min()) * 0.5  
+    y_max = payoff.max() + abs(payoff.max()) * 0.5  
+
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=precos, y=payoff, mode='lines', name='Payoff'))
     fig.update_layout(
         title="Gráfico de Payoff da Opção",
         xaxis_title="Preço do Ativo Subjacente",
         yaxis_title="Payoff",
+        yaxis=dict(range=[y_min, y_max]),  # Intervalo ajustado para o eixo y
         template="plotly_dark"
     )
     st.plotly_chart(fig)
