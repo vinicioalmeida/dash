@@ -109,7 +109,7 @@ elif selected_tool == "Payoff de Opções":
     elif tipo_opcao == "Venda de Put":
         payoff = premio - np.maximum(strike - precos, 0)
 
-        # Definindo intervalo expandido para o eixo y
+    # Definindo intervalo expandido para o eixo y
     y_min = payoff.min() - abs(payoff.min()) * 0.5  
     y_max = payoff.max() + abs(payoff.max()) * 0.5  
 
