@@ -32,7 +32,7 @@ st.markdown('---')
 st.sidebar.markdown('---')
 selected_tool = st.sidebar.radio(
     "Escolha a Ferramenta:",
-    ["Calculadoras Black-Scholes-Merton", "Calculadora de Gregas de Opções", "Ferramenta de Payoff"]
+    ["Calculadoras Black-Scholes-Merton", "Calculadora de Gregas de Opções", "Payoff de Opções"]
 )
 
 st.sidebar.markdown('---')
@@ -90,8 +90,8 @@ elif selected_tool == "Calculadora de Gregas de Opções":
         st.write(f"**Vega:** {vega:.4f}")
         st.write(f"**Rho:** {rho:.4f}")
 
-elif selected_tool == "Ferramenta de Payoff":
-    st.subheader('Ferramenta de Payoff para Opções')
+elif selected_tool == "Payoff de Opções":
+    st.subheader('Payoff de Opções')
 
     st.write("Insira os detalhes da sua posição:")
     tipo_opcao = st.selectbox("Escolha o tipo de opção:", ["Compra de Call", "Venda de Call", "Compra de Put", "Venda de Put"])
