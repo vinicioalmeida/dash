@@ -1,25 +1,7 @@
-import plotly
 import streamlit as st
-import pandas as pd
-import yfinance as yf
 import numpy as np
-import matplotlib.pyplot as plt
-import plotly.express as px
 import plotly.graph_objects as go
-import datetime
-from datetime import datetime, timedelta, time
-import math
-from scipy import stats
 from scipy.stats import norm
-from scipy.optimize import newton
-from openpyxl import Workbook, load_workbook
-import requests
-import zipfile
-import io
-import fundamentus
-from statsmodels.regression.linear_model import OLS
-from statsmodels.tsa.stattools import adfuller
-import statsmodels.api as sm
 
 # Configuração da página
 st.set_page_config(page_title='Ferramentas Quantitativas')
