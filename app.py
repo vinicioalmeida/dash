@@ -18,6 +18,8 @@ selected_tool = st.sidebar.radio(
     ["Calculadoras Black-Scholes-Merton", "Calculadora de Gregas de Opções", "Payoff de Opções", "Simulador de Monte Carlo", "Estrutura de Capital"]
 )
 
+st.sidebar.markdown("[Simulador cambial](https://simuladorcambio.streamlit.app)")
+
 st.sidebar.markdown('---')
 st.sidebar.markdown("""
     Prof. Vinicio Almeida \\
