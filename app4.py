@@ -8,24 +8,24 @@ import pandas as pd
 st.set_page_config(page_title='Ferramentas Quantitativas')
 
 st.markdown('<span style="color:gold; font-size: 48px">&#9733;</span> <span style="font-size: 48px; font-weight: bold">Ferramentas Quantitativas</span>', unsafe_allow_html=True)
-st.markdown("""Escolha à esquerda a ferramenta (no celular, seta bem em cima à esquerda).""")
+st.markdown("""
+    Prof. Vinicio Almeida - https://linkedin.com/in/vinicioalmeida
+    
+    """)
+
 st.markdown('---')
 
 # Configuração da barra lateral
-st.sidebar.markdown('---')
 selected_tool = st.sidebar.radio(
     "Escolha a Ferramenta:",
     ["Calculadora de VPL", "Estrutura de Capital", "Títulos de Renda Fixa", "Calculadoras Black-Scholes-Merton", "Calculadora de Gregas de Opções", "Payoff de Opções", "Simulador de Monte Carlo"]
 )
 
+st.sidebar.markdown('---')
+
 st.sidebar.markdown("[Simulador cambial](https://simuladorcambio.streamlit.app)")
 
-st.sidebar.markdown('---')
-st.sidebar.markdown("""
-    Prof. Vinicio Almeida \\
-    https://linkedin.com/in/vinicioalmeida/ \\
-    almeida.vinicio@gmail.com
-    """)
+
 
 # Função para Black-Scholes
 def black_scholes(S, K, T, r, sigma, tipo='call'):
@@ -1065,208 +1065,56 @@ elif selected_tool == "Títulos de Renda Fixa":
                     else:
                         st.write("• Convexidade negativa")
                         st.write("• Maior risco de taxa")
-        
-        # Agora colocar toda a seção de estimativa fora dos botões mas dentro da aba
-        st.markdown("---")
-        st.subheader("Simulador de Variação de Preço")
-        st.write("Use os parâmetros acima para simular como mudanças nas taxas afetam o preço:")
-        
-        # Parâmetros para simulação
-        col1_sim, col2_sim = st.columns(2)
-        
-        with col1_sim:
-            valor_face_sim = st.number_input(
-                "Valor de Face (R$):", 
-                min_value=0.01, 
-                value=1000.0, 
-                step=10.0,
-                key="vf_sim"
-            )
-            
-            cupom_anual_sim = st.number_input(
-                "Cupom Anual (R$):", 
-                min_value=0.0, 
-                value=80.0, 
-                step=5.0,
-                key="cupom_sim"
-            )
-            
-            maturidade_sim = st.number_input(
-                "Prazo até Vencimento (anos):", 
-                min_value=0.1, 
-                value=5.0, 
-                step=0.5,
-                key="mat_sim"
-            )
-        
-        with col2_sim:
-            ytm_sim = st.number_input(
-                "YTM (% a.a.):", 
-                min_value=0.0, 
-                value=9.0, 
-                step=0.1,
-                key="ytm_sim"
-            ) / 100
-            
-            freq_cupom_sim = st.selectbox(
-                "Frequência de Pagamento:",
-                [1, 2],
-                format_func=lambda x: "Anual" if x == 1 else "Semestral",
-                key="freq_sim"
-            )
-            
-            variacao_taxa = st.slider(
-                "Variação na taxa de juros (pontos percentuais):",
-                min_value=-5.0,
-                max_value=5.0,
-                value=1.0,
-                step=0.1,
-                key="var_taxa_sim"
-            ) / 100
-        
-        if st.button("Simular Variação de Preço", key="simular_variacao"):
-            # Cálculos base
-            preco_base = calcular_preco_titulo(valor_face_sim, cupom_anual_sim, ytm_sim, maturidade_sim, freq_cupom_sim)
-            duration_mac_sim = calcular_duration_macaulay(valor_face_sim, cupom_anual_sim, ytm_sim, maturidade_sim, freq_cupom_sim)
-            duration_mod_sim = calcular_duration_modificada(duration_mac_sim, ytm_sim, freq_cupom_sim)
-            convexidade_sim = calcular_convexidade(valor_face_sim, cupom_anual_sim, ytm_sim, maturidade_sim, freq_cupom_sim)
-            
-            # Estimativa usando duration e convexidade
-            var_estimada = estimar_variacao_preco(duration_mod_sim, convexidade_sim, variacao_taxa)
-            preco_estimado = preco_base * (1 + var_estimada)
-            
-            # Estimativa usando apenas duration (sem convexidade)
-            var_duration_only = -duration_mod_sim * variacao_taxa
-            preco_duration_only = preco_base * (1 + var_duration_only)
-            
-            # Preço real para comparação
-            ytm_novo = ytm_sim + variacao_taxa
-            if ytm_novo > 0:
-                preco_real = calcular_preco_titulo(valor_face_sim, cupom_anual_sim, ytm_novo, maturidade_sim, freq_cupom_sim)
                 
-                # Cálculo dos erros
-                erro_duration_only = abs(preco_duration_only - preco_real)
-                erro_duration_conv = abs(preco_estimado - preco_real)
-                erro_pct_duration = (erro_duration_only / preco_real) * 100
-                erro_pct_conv = (erro_duration_conv / preco_real) * 100
+                # Exemplo prático de estimativa
+                st.subheader("Estimativa de Variação de Preço")
                 
-                # Mostrar resultados
-                st.subheader("Resultados da Simulação")
+                variacao_taxa = st.slider(
+                    "Variação na taxa de juros (pontos percentuais):",
+                    min_value=-5.0,
+                    max_value=5.0,
+                    value=1.0,
+                    step=0.1,
+                    key="var_taxa"
+                ) / 100
                 
-                col1_res, col2_res, col3_res, col4_res = st.columns(4)
+                # Estimativa usando duration e convexidade
+                var_estimada = estimar_variacao_preco(duration_mod, convexidade, variacao_taxa)
+                preco_estimado = preco_dur * (1 + var_estimada)
                 
-                with col1_res:
+                # Preço real para comparação
+                ytm_novo = ytm_dur + variacao_taxa
+                if ytm_novo > 0:
+                    preco_real = calcular_preco_titulo(valor_face_dur, cupom_anual_dur, ytm_novo, maturidade_dur, freq_cupom_dur)
+                    erro_estimativa = abs(preco_estimado - preco_real)
+                else:
+                    preco_real = None
+                    erro_estimativa = None
+                
+                col1_est, col2_est, col3_est = st.columns(3)
+                
+                with col1_est:
                     st.metric(
-                        "Preço Original",
-                        f"R$ {preco_base:.2f}"
+                        "Variação Estimada (%)",
+                        f"{var_estimada*100:.2f}%"
                     )
                 
-                with col2_res:
-                    diferenca_real = preco_real - preco_base
+                with col2_est:
                     st.metric(
-                        "Preço Real",
-                        f"R$ {preco_real:.2f}",
-                        f"{diferenca_real:.2f}"
-                    )
-                
-                with col3_res:
-                    diferenca_duration = preco_duration_only - preco_base
-                    st.metric(
-                        "Estimativa (Duration)",
-                        f"R$ {preco_duration_only:.2f}",
-                        f"{diferenca_duration:.2f}"
-                    )
-                    st.caption(f"Erro vs real: {erro_pct_duration:.3f}%")
-                
-                with col4_res:
-                    diferenca_conv = preco_estimado - preco_base
-                    st.metric(
-                        "Estimativa (Dur+Conv)",
+                        "Preço Estimado",
                         f"R$ {preco_estimado:.2f}",
-                        f"{diferenca_conv:.2f}"
+                        f"R$ {preco_estimado - preco_dur:.2f}"
                     )
-                    st.caption(f"Erro vs real: {erro_pct_conv:.3f}%")
                 
-                # Tabela comparativa detalhada
-                st.subheader("Análise Comparativa Detalhada")
-                
-                cenarios_variacao = [-0.03, -0.02, -0.01, -0.005, 0.005, 0.01, 0.02, 0.03]
-                dados_comparacao = []
-                
-                for var in cenarios_variacao:
-                    ytm_cenario = ytm_sim + var
-                    if ytm_cenario > 0:
-                        # Preço real
-                        preco_real_cenario = calcular_preco_titulo(valor_face_sim, cupom_anual_sim, ytm_cenario, maturidade_sim, freq_cupom_sim)
-                        
-                        # Estimativa só com duration
-                        var_dur_only = -duration_mod_sim * var
-                        preco_dur_only = preco_base * (1 + var_dur_only)
-                        erro_dur = abs(preco_dur_only - preco_real_cenario)
-                        erro_pct_dur = (erro_dur / preco_real_cenario) * 100
-                        
-                        # Estimativa com duration + convexidade
-                        var_dur_conv = estimar_variacao_preco(duration_mod_sim, convexidade_sim, var)
-                        preco_dur_conv = preco_base * (1 + var_dur_conv)
-                        erro_conv = abs(preco_dur_conv - preco_real_cenario)
-                        erro_pct_conv = (erro_conv / preco_real_cenario) * 100
-                        
-                        dados_comparacao.append({
-                            'Δ YTM': f"{var*100:+.1f}%",
-                            'YTM Final': f"{ytm_cenario*100:.2f}%",
-                            'Preço Real': f"R$ {preco_real_cenario:.2f}",
-                            'Duration (R$)': f"R$ {preco_dur_only:.2f}",
-                            'Erro Duration': f"{erro_pct_dur:.3f}%",
-                            'Dur+Conv (R$)': f"R$ {preco_dur_conv:.2f}",
-                            'Erro Dur+Conv': f"{erro_pct_conv:.3f}%"
-                        })
-                
-                if dados_comparacao:
-                    df_comp = pd.DataFrame(dados_comparacao)
-                    st.dataframe(df_comp, use_container_width=True)
-                    
-                    # Gráfico comparativo
-                    st.subheader("Visualização dos Erros de Estimativa")
-                    
-                    variacoes = [float(d['Δ YTM'].replace('%', '').replace('+', '')) for d in dados_comparacao]
-                    erros_duration = [float(d['Erro Duration'].replace('%', '')) for d in dados_comparacao]
-                    erros_conv = [float(d['Erro Dur+Conv'].replace('%', '')) for d in dados_comparacao]
-                    
-                    fig_erros = go.Figure()
-                    
-                    fig_erros.add_trace(go.Scatter(
-                        x=variacoes,
-                        y=erros_duration,
-                        mode='lines+markers',
-                        name='Erro Duration Apenas',
-                        line=dict(color='red', width=2)
-                    ))
-                    
-                    fig_erros.add_trace(go.Scatter(
-                        x=variacoes,
-                        y=erros_conv,
-                        mode='lines+markers',
-                        name='Erro Duration + Convexidade',
-                        line=dict(color='blue', width=2)
-                    ))
-                    
-                    fig_erros.update_layout(
-                        title="Precisão das Estimativas vs Variação da Taxa",
-                        xaxis_title="Variação YTM (%)",
-                        yaxis_title="Erro Absoluto (%)",
-                        template="plotly_dark"
-                    )
-                    
-                    st.plotly_chart(fig_erros, use_container_width=True)
-                    
-                    st.write("**Conclusões:**")
-                    st.write("• Duration sozinha é boa para pequenas variações")
-                    st.write("• Convexidade melhora muito a precisão para variações maiores")
-                    st.write("• Para variações > 2%, os erros aumentam significativamente")
-                    st.write("• A convexidade é especialmente importante para títulos de longo prazo")
-                    
-            else:
-                st.error("YTM resultante é negativa. Escolha uma variação menor.")
+                with col3_est:
+                    if preco_real is not None:
+                        st.metric(
+                            "Preço Real",
+                            f"R$ {preco_real:.2f}",
+                            f"Erro: R$ {erro_estimativa:.2f}"
+                        )
+                    else:
+                        st.metric("Preço Real", "N/A (YTM < 0)")
     
     with tab4:
         st.subheader("Análise de Sensibilidade")
