@@ -15,7 +15,7 @@ st.markdown('---')
 st.sidebar.markdown('---')
 selected_tool = st.sidebar.radio(
     "Escolha a Ferramenta:",
-    ["Calculadoras Black-Scholes-Merton", "Calculadora de Gregas de Opções", "Payoff de Opções", "Simulador de Monte Carlo", "Estrutura de Capital"]
+    ["Calculadora de VPL", "Estrutura de Capital", "Calculadoras Black-Scholes-Merton", "Calculadora de Gregas de Opções", "Payoff de Opções", "Simulador de Monte Carlo"]
 )
 
 st.sidebar.markdown("[Simulador cambial](https://simuladorcambio.streamlit.app)")
@@ -65,6 +65,54 @@ def monte_carlo_option_pricing(S, K, T, r, sigma, n_sims, n_steps, tipo='call'):
     
     return option_price, S_paths, S_final, payoffs
 
+# Funções para VPL
+def calcular_vpl(investimento_inicial, fluxos_caixa, taxa_desconto):
+    """
+    Calcula o Valor Presente Líquido (VPL)
+    
+    Args:
+        investimento_inicial: Investimento inicial (C0) - valor negativo
+        fluxos_caixa: Lista dos fluxos de caixa futuros [C1, C2, ..., Ct]
+        taxa_desconto: Taxa de desconto (r) em decimal
+    
+    Returns:
+        VPL, VP dos fluxos, lista dos VPs individuais
+    """
+    vp_fluxos = []
+    vp_total = 0
+    
+    for t, fluxo in enumerate(fluxos_caixa, 1):
+        vp_fluxo = fluxo / ((1 + taxa_desconto) ** t)
+        vp_fluxos.append(vp_fluxo)
+        vp_total += vp_fluxo
+    
+    vpl = investimento_inicial + vp_total  # investimento_inicial já é negativo
+    
+    return vpl, vp_total, vp_fluxos
+
+def taxa_interna_retorno(investimento_inicial, fluxos_caixa, tentativas=1000):
+    """
+    Calcula a Taxa Interna de Retorno (TIR) usando busca binária
+    """
+    def vpl_para_taxa(taxa):
+        return calcular_vpl(investimento_inicial, fluxos_caixa, taxa)[0]
+    
+    # Busca binária para encontrar a TIR
+    taxa_min, taxa_max = -0.99, 10.0
+    
+    for _ in range(tentativas):
+        taxa_media = (taxa_min + taxa_max) / 2
+        vpl_medio = vpl_para_taxa(taxa_media)
+        
+        if abs(vpl_medio) < 0.01:  # Precisão
+            return taxa_media
+        elif vpl_medio > 0:
+            taxa_min = taxa_media
+        else:
+            taxa_max = taxa_media
+    
+    return taxa_media
+
 # Funções para Estrutura de Capital
 def calcular_capm(rf, beta, rm):
     """Calcula o custo do capital próprio usando CAPM"""
@@ -113,7 +161,380 @@ def analisar_estrutura_otima(valores_divida, patrimonio_liquido, custo_equity, c
     return pd.DataFrame(resultados)
 
 # Implementação das funcionalidades
-if selected_tool == "Calculadoras Black-Scholes-Merton":
+if selected_tool == "Calculadora de VPL":
+    st.subheader('Calculadora de Valor Presente Líquido (VPL)')
+    
+    st.write("""
+    O **Valor Presente Líquido (VPL)** é uma ferramenta fundamental para avaliação de projetos de investimento.
+    
+    **Fórmula:** VPL = C₀ + Σ[Cₜ/(1+r)ᵗ]
+    
+    Onde:
+    - C₀ = Investimento inicial (fluxo negativo)
+    - Cₜ = Fluxo de caixa no período t
+    - r = Taxa de desconto (custo de capital)
+    - t = Período
+    """)
+    
+    # Tabs para diferentes tipos de análise
+    tab1, tab2, tab3 = st.tabs(["📊 Cálculo Básico", "📈 Análise de Sensibilidade", "🎯 Múltiplos Projetos"])
+    
+    with tab1:
+        st.subheader("Cálculo do VPL")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.write("**Dados do Projeto:**")
+            investimento_inicial = st.number_input(
+                "Investimento Inicial (R$ mil):", 
+                value=100.0, 
+                step=10.0,
+                help="Valor investido no início do projeto (será considerado negativo)"
+            )
+            
+            taxa_desconto = st.number_input(
+                "Taxa de Desconto (% a.a.):", 
+                min_value=0.0, 
+                max_value=50.0, 
+                value=10.0, 
+                step=0.5
+            ) / 100
+            
+            # Número de períodos
+            num_periodos = st.slider("Número de Períodos:", min_value=1, max_value=10, value=5)
+        
+        with col2:
+            st.write("**Fluxos de Caixa Futuros (R$ mil):**")
+            fluxos_caixa = []
+            
+            for i in range(num_periodos):
+                fluxo = st.number_input(
+                    f"Ano {i+1}:", 
+                    value=30.0, 
+                    step=5.0, 
+                    key=f"fluxo_{i}"
+                )
+                fluxos_caixa.append(fluxo)
+        
+        if st.button("Calcular VPL", key="calc_vpl_basic"):
+            # Cálculos
+            investimento_negativo = -abs(investimento_inicial)
+            vpl, vp_total, vp_fluxos = calcular_vpl(investimento_negativo, fluxos_caixa, taxa_desconto)
+            
+            # Calcular TIR
+            try:
+                tir = taxa_interna_retorno(investimento_negativo, fluxos_caixa)
+                tir_percent = tir * 100
+            except:
+                tir_percent = "N/A"
+            
+            # Resultados principais
+            st.subheader("Resultados da Análise")
+            
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                cor_vpl = "green" if vpl > 0 else "red"
+                st.markdown(f"""
+                <div style="text-align: center; padding: 20px; border: 2px solid {cor_vpl}; border-radius: 10px;">
+                    <h3 style="color: {cor_vpl};">VPL</h3>
+                    <h2 style="color: {cor_vpl};">R$ {vpl:.2f} mil</h2>
+                </div>
+                """, unsafe_allow_html=True)
+            
+            with col2:
+                st.metric("VP dos Fluxos", f"R$ {vp_total:.2f} mil")
+                st.metric("Investimento Inicial", f"R$ {investimento_inicial:.2f} mil")
+            
+            with col3:
+                if isinstance(tir_percent, (int, float)):
+                    cor_tir = "green" if tir_percent > taxa_desconto * 100 else "red"
+                    st.markdown(f"""
+                    <div style="text-align: center; padding: 10px;">
+                        <h4>TIR</h4>
+                        <h3 style="color: {cor_tir};">{tir_percent:.2f}%</h3>
+                        <small>Taxa de Desconto: {taxa_desconto*100:.1f}%</small>
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.metric("TIR", "N/A")
+            
+            # Interpretação
+            st.subheader("Interpretação do Resultado")
+            
+            if vpl > 0:
+                st.success(f"""
+                ✅ **PROJETO VIÁVEL**
+                
+                O VPL positivo de R$ {vpl:.2f} mil indica que o projeto:
+                - Gera valor para a empresa
+                - Tem retorno superior ao custo de capital ({taxa_desconto*100:.1f}%)
+                - Deve ser **ACEITO**
+                """)
+            elif vpl < 0:
+                st.error(f"""
+                ❌ **PROJETO NÃO VIÁVEL**
+                
+                O VPL negativo de R$ {vpl:.2f} mil indica que o projeto:
+                - Destrói valor para a empresa
+                - Tem retorno inferior ao custo de capital ({taxa_desconto*100:.1f}%)
+                - Deve ser **REJEITADO**
+                """)
+            else:
+                st.warning("**PROJETO NEUTRO** - VPL = 0. O retorno é exatamente igual ao custo de capital.")
+            
+            # Tabela detalhada
+            st.subheader("Detalhamento dos Cálculos")
+            
+            dados_tabela = []
+            dados_tabela.append({
+                'Período': 0,
+                'Fluxo de Caixa': f"R$ {investimento_negativo:.2f}",
+                'Fator de Desconto': "1,0000",
+                'Valor Presente': f"R$ {investimento_negativo:.2f}"
+            })
+            
+            for i, (fluxo, vp) in enumerate(zip(fluxos_caixa, vp_fluxos), 1):
+                fator_desconto = 1 / ((1 + taxa_desconto) ** i)
+                dados_tabela.append({
+                    'Período': i,
+                    'Fluxo de Caixa': f"R$ {fluxo:.2f}",
+                    'Fator de Desconto': f"{fator_desconto:.4f}",
+                    'Valor Presente': f"R$ {vp:.2f}"
+                })
+            
+            df_detalhes = pd.DataFrame(dados_tabela)
+            st.dataframe(df_detalhes, use_container_width=True)
+            
+            # Gráfico dos fluxos de caixa
+            st.subheader("Visualização dos Fluxos de Caixa")
+            
+            periodos = list(range(num_periodos + 1))
+            fluxos_totais = [investimento_negativo] + fluxos_caixa
+            vp_totais = [investimento_negativo] + vp_fluxos
+            
+            fig = go.Figure()
+            
+            # Fluxos nominais
+            fig.add_trace(go.Bar(
+                x=periodos,
+                y=fluxos_totais,
+                name='Fluxos Nominais',
+                marker_color=['red' if x < 0 else 'lightblue' for x in fluxos_totais],
+                opacity=0.7
+            ))
+            
+            # Valores presentes
+            fig.add_trace(go.Bar(
+                x=periodos,
+                y=vp_totais,
+                name='Valores Presentes',
+                marker_color=['darkred' if x < 0 else 'darkblue' for x in vp_totais],
+                opacity=0.9
+            ))
+            
+            fig.update_layout(
+                title="Fluxos de Caixa: Nominais vs Valores Presentes",
+                xaxis_title="Período",
+                yaxis_title="Valor (R$ mil)",
+                template="plotly_dark",
+                barmode='group'
+            )
+            
+            st.plotly_chart(fig, use_container_width=True)
+    
+    with tab2:
+        st.subheader("Análise de Sensibilidade")
+        st.write("Analise como mudanças na taxa de desconto afetam o VPL do projeto.")
+        
+        if 'fluxos_caixa' in locals() and 'investimento_inicial' in locals():
+            # Range de taxas para análise
+            taxa_min = st.number_input("Taxa Mínima (%)", value=5.0, step=1.0) / 100
+            taxa_max = st.number_input("Taxa Máxima (%)", value=20.0, step=1.0) / 100
+            
+            if st.button("Gerar Análise de Sensibilidade"):
+                taxas = np.linspace(taxa_min, taxa_max, 50)
+                vpls = []
+                
+                for taxa in taxas:
+                    vpl_temp, _, _ = calcular_vpl(-investimento_inicial, fluxos_caixa, taxa)
+                    vpls.append(vpl_temp)
+                
+                # Gráfico de sensibilidade
+                fig_sens = go.Figure()
+                
+                fig_sens.add_trace(go.Scatter(
+                    x=taxas * 100,
+                    y=vpls,
+                    mode='lines',
+                    name='VPL',
+                    line=dict(width=3, color='blue')
+                ))
+                
+                # Linha do VPL = 0
+                fig_sens.add_hline(y=0, line_dash="dash", line_color="red", 
+                                   annotation_text="VPL = 0")
+                
+                # Marcar taxa atual
+                vpl_atual, _, _ = calcular_vpl(-investimento_inicial, fluxos_caixa, taxa_desconto)
+                fig_sens.add_trace(go.Scatter(
+                    x=[taxa_desconto * 100],
+                    y=[vpl_atual],
+                    mode='markers',
+                    name=f'Taxa Atual ({taxa_desconto*100:.1f}%)',
+                    marker=dict(size=10, color='red')
+                ))
+                
+                fig_sens.update_layout(
+                    title="Análise de Sensibilidade: VPL vs Taxa de Desconto",
+                    xaxis_title="Taxa de Desconto (%)",
+                    yaxis_title="VPL (R$ mil)",
+                    template="plotly_dark"
+                )
+                
+                st.plotly_chart(fig_sens, use_container_width=True)
+                
+                # Encontrar TIR (onde VPL = 0)
+                vpl_zero_idx = np.argmin(np.abs(vpls))
+                tir_aprox = taxas[vpl_zero_idx] * 100
+                
+                st.info(f"""
+                **Insights da Análise de Sensibilidade:**
+                
+                - **TIR Aproximada:** {tir_aprox:.2f}%
+                - **Sensibilidade:** {'Alta' if abs(vpls[0] - vpls[-1]) > 100 else 'Baixa'}
+                - **Ponto de Equilíbrio:** Taxa de desconto ≈ {tir_aprox:.1f}%
+                """)
+        else:
+            st.warning("Execute primeiro o cálculo básico do VPL na aba anterior.")
+    
+    with tab3:
+        st.subheader("Comparação de Múltiplos Projetos")
+        st.write("Compare o VPL de diferentes projetos para apoiar a decisão de investimento.")
+        
+        num_projetos = st.slider("Número de Projetos a Comparar:", 2, 5, 3)
+        taxa_comparacao = st.number_input("Taxa de Desconto para Comparação (%):", value=10.0) / 100
+        
+        projetos_dados = []
+        
+        for i in range(num_projetos):
+            st.write(f"**Projeto {chr(65+i)}:**")
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                inv_inicial = st.number_input(f"Investimento Inicial (R$ mil):", value=100.0, key=f"inv_{i}")
+                periodos = st.slider(f"Períodos:", 1, 8, 5, key=f"per_{i}")
+            
+            with col2:
+                fluxos = []
+                for j in range(periodos):
+                    fluxo = st.number_input(f"Ano {j+1}:", value=30.0, key=f"fluxo_{i}_{j}")
+                    fluxos.append(fluxo)
+            
+            projetos_dados.append({
+                'nome': f'Projeto {chr(65+i)}',
+                'investimento': inv_inicial,
+                'fluxos': fluxos
+            })
+        
+        if st.button("Comparar Projetos"):
+            resultados_projetos = []
+            
+            for projeto in projetos_dados:
+                vpl, vp_total, _ = calcular_vpl(-projeto['investimento'], projeto['fluxos'], taxa_comparacao)
+                
+                try:
+                    tir = taxa_interna_retorno(-projeto['investimento'], projeto['fluxos']) * 100
+                except:
+                    tir = "N/A"
+                
+                il = vp_total / projeto['investimento'] if projeto['investimento'] > 0 else 0  # Índice de Lucratividade
+                
+                resultados_projetos.append({
+                    'Projeto': projeto['nome'],
+                    'Investimento (R$ mil)': projeto['investimento'],
+                    'VPL (R$ mil)': vpl,
+                    'TIR (%)': f"{tir:.2f}" if isinstance(tir, (int, float)) else tir,
+                    'IL': f"{il:.2f}",
+                    'Decisão': 'ACEITAR' if vpl > 0 else 'REJEITAR'
+                })
+            
+            df_resultados = pd.DataFrame(resultados_projetos)
+            
+            # Colorir as linhas baseado na decisão
+            st.subheader("Resumo Comparativo")
+            st.dataframe(df_resultados, use_container_width=True)
+            
+            # Gráfico comparativo
+            fig_comp = go.Figure()
+            
+            projetos_nomes = [r['Projeto'] for r in resultados_projetos]
+            vpls = [r['VPL (R$ mil)'] for r in resultados_projetos]
+            cores = ['green' if vpl > 0 else 'red' for vpl in vpls]
+            
+            fig_comp.add_trace(go.Bar(
+                x=projetos_nomes,
+                y=vpls,
+                marker_color=cores,
+                text=[f'R$ {vpl:.1f}' for vpl in vpls],
+                textposition='auto'
+            ))
+            
+            fig_comp.add_hline(y=0, line_dash="dash", line_color="white")
+            
+            fig_comp.update_layout(
+                title="Comparação de VPL entre Projetos",
+                xaxis_title="Projetos",
+                yaxis_title="VPL (R$ mil)",
+                template="plotly_dark"
+            )
+            
+            st.plotly_chart(fig_comp, use_container_width=True)
+            
+            # Recomendação
+            projeto_melhor = max(resultados_projetos, key=lambda x: x['VPL (R$ mil)'])
+            if projeto_melhor['VPL (R$ mil)'] > 0:
+                st.success(f"""
+                🏆 **Recomendação:** {projeto_melhor['Projeto']}
+                
+                - Maior VPL: R$ {projeto_melhor['VPL (R$ mil)']:.2f} mil
+                - TIR: {projeto_melhor['TIR (%)']}%
+                - Índice de Lucratividade: {projeto_melhor['IL']}
+                """)
+            else:
+                st.warning("⚠️ **Nenhum projeto apresenta VPL positivo.** Considere revisar os parâmetros ou buscar alternativas.")
+    
+    # Seção educativa
+    with st.expander("📚 Conceitos Importantes sobre VPL"):
+        st.markdown("""
+        ### O que é VPL?
+        
+        O **Valor Presente Líquido** é a diferença entre o valor presente dos fluxos de caixa futuros e o investimento inicial.
+        
+        ### Regra de Decisão:
+        - **VPL > 0:** ACEITAR o projeto (cria valor)
+        - **VPL < 0:** REJEITAR o projeto (destrói valor)  
+        - **VPL = 0:** INDIFERENTE (retorno = custo de capital)
+        
+        ### Vantagens do VPL:
+        - Considera o valor do dinheiro no tempo
+        - Usa todos os fluxos de caixa do projeto
+        - Permite comparação direta entre projetos
+        - Indica o valor criado em termos absolutos
+        
+        ### Taxa Interna de Retorno (TIR):
+        - Taxa que torna o VPL = 0
+        - Se TIR > taxa de desconto → projeto viável
+        - Se TIR < taxa de desconto → projeto não viável
+        
+        ### Índice de Lucratividade (IL):
+        - IL = VP dos fluxos / Investimento inicial
+        - IL > 1 → projeto viável
+        - Útil para comparar projetos com investimentos diferentes
+        """)
+
+elif selected_tool == "Calculadoras Black-Scholes-Merton":
     st.subheader('Calculadora Black-Scholes-Merton')
 
     st.write("Insira os parâmetros abaixo:")
