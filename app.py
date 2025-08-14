@@ -8,7 +8,9 @@ import pandas as pd
 st.set_page_config(page_title='Ferramentas Quantitativas')
 
 st.markdown('<span style="color:gold; font-size: 48px">&#9733;</span> <span style="font-size: 48px; font-weight: bold">Ferramentas Quantitativas</span>', unsafe_allow_html=True)
-st.markdown("""Escolha à esquerda a ferramenta (no celular, seta bem em cima à esquerda).""")
+st.markdown("""
+    Prof. Vinicio Almeida - https://linkedin.com/in/vinicioalmeida
+    """)
 st.markdown('---')
 
 # Configuração da barra lateral
@@ -18,14 +20,9 @@ selected_tool = st.sidebar.radio(
     ["Calculadora de VPL", "Estrutura de Capital", "Títulos de Renda Fixa", "Calculadoras Black-Scholes-Merton", "Calculadora de Gregas de Opções", "Payoff de Opções", "Simulador de Monte Carlo"]
 )
 
-st.sidebar.markdown("[Simulador cambial](https://simuladorcambio.streamlit.app)")
-
 st.sidebar.markdown('---')
-st.sidebar.markdown("""
-    Prof. Vinicio Almeida \\
-    https://linkedin.com/in/vinicioalmeida/ \\
-    almeida.vinicio@gmail.com
-    """)
+
+st.sidebar.markdown("[Simulador cambial](https://simuladorcambio.streamlit.app)")
 
 # Função para Black-Scholes
 def black_scholes(S, K, T, r, sigma, tipo='call'):
