@@ -315,7 +315,7 @@ if selected_tool == "Calculadora de VPL":
     st.write("""
     O **Valor Presente Líquido (VPL)** é uma ferramenta fundamental para avaliação de projetos de investimento.
     
-    **Fórmula:** VPL = C₀ + Σ[Cₜ/(1+r)ᵗ]
+    **Equação:** VPL = C₀ + Σ[Cₜ/(1+r)ᵗ]
     
     Onde:
     - C₀ = Investimento inicial (fluxo negativo)
@@ -701,7 +701,7 @@ elif selected_tool == "Títulos de Renda Fixa":
     
     with tab1:
         st.subheader("Cálculo do Preço do Título")
-        st.write("**Fórmula:** Preço = Σ[Cupom/(1+YTM)^t] + ValorFace/(1+YTM)^n")
+        st.write("**Equação:** Preço = Σ[Cupom/(1+YTM)^t] + ValorFace/(1+YTM)^n")
         
         col1, col2 = st.columns(2)
         
