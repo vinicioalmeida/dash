@@ -17,7 +17,7 @@ st.markdown('---')
 
 selected_tool = st.sidebar.radio(
     "Escolha a Ferramenta:",
-    ["Calculadora de VPL", "Estrutura de Capital", "Títulos de Renda Fixa", "Calculadoras Black-Scholes-Merton", "Calculadora de Gregas de Opções", "Payoff de Opções", "Simulador de Monte Carlo"]
+    ["Calculadora de VPL", "Estrutura de Capital", "Títulos de Renda Fixa", "Black-Scholes-Merton", "Gregas de Opções", "Payoff de Opções", "Simulador de Monte Carlo"]
 )
 
 st.sidebar.markdown('---')
@@ -1999,7 +1999,7 @@ elif selected_tool == "Estrutura de Capital":
     - Consultoria com especialistas em finanças corporativas
     """)
 
-elif selected_tool == "Calculadoras Black-Scholes-Merton":
+elif selected_tool == "Black-Scholes-Merton":
     st.subheader('Calculadora Black-Scholes-Merton')
 
     st.write("Insira os parâmetros abaixo:")
@@ -2014,7 +2014,7 @@ elif selected_tool == "Calculadoras Black-Scholes-Merton":
         valor_opcao = black_scholes(S, K, T, r, sigma, tipo_opcao)
         st.write(f"**Preço da opção {tipo_opcao}:** R$ {valor_opcao:.2f}")
 
-elif selected_tool == "Calculadora de Gregas de Opções":
+elif selected_tool == "Gregas de Opções":
     st.subheader('Calculadora de Gregas de Opções')
 
     st.write("Insira os parâmetros abaixo:")
