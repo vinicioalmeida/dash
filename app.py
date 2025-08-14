@@ -9,12 +9,12 @@ st.set_page_config(page_title='Ferramentas Quantitativas')
 
 st.markdown('<span style="color:gold; font-size: 48px">&#9733;</span> <span style="font-size: 48px; font-weight: bold">Ferramentas Quantitativas</span>', unsafe_allow_html=True)
 st.markdown("""
-    Prof. Vinicio Almeida - https://linkedin.com/in/vinicioalmeida
+    Prof. Vinicio Almeida - https://sites.google.com/view/vinicioalmeida
     """)
 st.markdown('---')
 
 # Configuração da barra lateral
-st.sidebar.markdown('---')
+
 selected_tool = st.sidebar.radio(
     "Escolha a Ferramenta:",
     ["Calculadora de VPL", "Estrutura de Capital", "Títulos de Renda Fixa", "Calculadoras Black-Scholes-Merton", "Calculadora de Gregas de Opções", "Payoff de Opções", "Simulador de Monte Carlo"]
