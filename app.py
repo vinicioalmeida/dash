@@ -415,7 +415,7 @@ if selected_tool == "Calculadora de VPL":
     st.subheader('Calculadora de Valor Presente Líquido (VPL)')
     
     st.write("""
-    O **Valor Presente Líquido (VPL)** é uma ferramenta fundamental para avaliação de projetos de investimento.
+    O **Valor Presente Líquido (VPL)** é uma ferramenta importante para avaliação de projetos de investimento.
     
     **Equação:** VPL = C₀ + Σ[Cₜ/(1+r)ᵗ]
     
@@ -1653,7 +1653,7 @@ elif selected_tool == "Títulos de Renda Fixa":
     # Seção educativa
     with st.expander("Conceitos Importantes sobre Títulos de Renda Fixa"):
         st.markdown("""
-        ### Conceitos Fundamentais:
+        ### Conceitos Importantes:
         
         **Yield to Maturity (YTM):**
         - Taxa de retorno se o título for mantido até o vencimento
@@ -2345,7 +2345,7 @@ elif selected_tool == "Dividendos vs JCP":
     with tab1:
         st.subheader("Dividendos vs Juros sobre Capital Próprio")
         
-        with st.expander("Entenda as Diferenças Fundamentais"):
+        with st.expander("Entenda as Diferenças"):
             st.markdown("""
             **Dividendos:**
             - Isentos de imposto de renda para pessoa física (Lei 9.249/95)
@@ -2817,7 +2817,7 @@ elif selected_tool == "Economia do 'e'":
                 aprox = calcular_e_aproximacao(m)
                 aproximacoes.append({
                     'Períodos (m)': f"{m:,}",
-                    'Fórmula': f"(1 + 1/{m})^{m}",
+                    'Equação': f"(1 + 1/{m})^{m}",
                     'Valor': f"{aprox:.8f}",
                     'Diferença de e': f"{abs(aprox - np.e):.8f}"
                 })
@@ -2884,7 +2884,7 @@ elif selected_tool == "Economia do 'e'":
                        annotation_text=f"e = {np.e:.6f}")
         
         fig_e.update_layout(
-            title="Convergência da Fórmula (1 + 1/m)^m para o Número e",
+            title="Convergência da Equação (1 + 1/m)^m para o Número e",
             xaxis_title="Número de Períodos (m)",
             yaxis_title="Valor da Expressão",
             xaxis_type="log",
@@ -2940,7 +2940,7 @@ elif selected_tool == "Economia do 'e'":
                     'Frequência': freq if nome != "Contínua" else "∞",
                     'Valor Final': f"${valor:,.2f}",
                     'Ganho': f"${valor - principal:,.2f}",
-                    'Fórmula': formula
+                    'Equação': formula
                 })
             
             df_comp = pd.DataFrame(resultados_comp)
@@ -3021,7 +3021,7 @@ elif selected_tool == "Economia do 'e'":
         st.subheader("Conversão entre Taxas Discretas e Contínuas")
         
         st.write("""
-        **Fórmulas de Conversão:**
+        **Equações de Conversão:**
         - **Discreta → Contínua:** r = ln(1 + i)
         - **Contínua → Discreta:** i = e^r - 1
         
@@ -3046,7 +3046,7 @@ elif selected_tool == "Economia do 'e'":
             st.success(f"""
             **Taxa Discreta:** {taxa_discreta:.4%}  
             **Taxa Contínua:** {taxa_continua_conv:.4%}  
-            **Fórmula:** ln(1 + {taxa_discreta:.4f}) = {taxa_continua_conv:.6f}
+            **Equação:** ln(1 + {taxa_discreta:.4f}) = {taxa_continua_conv:.6f}
             """)
             
         with col2:
@@ -3065,7 +3065,7 @@ elif selected_tool == "Economia do 'e'":
             st.success(f"""
             **Taxa Contínua:** {taxa_continua_input:.4%}  
             **Taxa Discreta:** {taxa_discreta_conv:.4%}  
-            **Fórmula:** e^{taxa_continua_input:.6f} - 1 = {taxa_discreta_conv:.6f}
+            **Equação:** e^{taxa_continua_input:.6f} - 1 = {taxa_discreta_conv:.6f}
             """)
         
         # Tabela de equivalências
@@ -3350,7 +3350,7 @@ elif selected_tool == "Economia do 'e'":
                 st.metric("Juros Contínuos", f"${montante_continuo:,.2f}", f"+${diferenca_cont:,.2f}")
     
     # Seção educativa
-    with st.expander("Conceitos Fundamentais"):
+    with st.expander("Conceitos Importantes"):
         st.markdown("""
         ### O Número e na Economia
         
@@ -3360,7 +3360,7 @@ elif selected_tool == "Economia do 'e'":
         - Valor final de $1 investido a 100% ao ano com capitalização contínua
         - Base natural para crescimento exponencial contínuo
         
-        ### Fórmulas Fundamentais
+        ### Equações
         
         **Capitalização Discreta:** V = A(1 + i)^t
         - i = taxa efetiva por período
@@ -3392,11 +3392,11 @@ elif selected_tool == "Economia do 'e'":
         - Simplicidade matemática em cálculos avançados
         - Base para modelos estocásticos
         - Facilita análises de sensibilidade
-        - Fundamental para Black-Scholes e outros modelos
+        - Importante para Black-Scholes e outros modelos
         """)
     
     st.info("""
     **Nota Pedagógica:** O número e não é apenas uma constante matemática, mas representa 
-    um conceito fundamental em finanças: o limite natural do crescimento exponencial. 
+    um conceito importante em finanças: o limite natural do crescimento exponencial. 
     Compreender sua interpretação econômica é essencial para modelos financeiros avançados.
     """)
