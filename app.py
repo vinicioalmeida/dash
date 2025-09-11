@@ -9,7 +9,7 @@ st.set_page_config(page_title='Ferramentas Quantitativas')
 
 st.markdown('<span style="color:gold; font-size: 48px">📚</span> <span style="font-size: 48px; font-weight: bold">Ferramentas Quantitativas</span>', unsafe_allow_html=True)
 st.markdown("""
-    Prof. Vinicio Almeida - https://sites.google.com/view/vinicioalmeida
+    Prof. Vinicio Almeida - https://linktr.ee/vinicioalmeida
     """)
 st.markdown('---')
 
