@@ -146,6 +146,21 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+
+# ── Media & Press ─────────────────────────────────────────────────────────────
+st.markdown('<div class="section-label">Media & Press</div>', unsafe_allow_html=True)
+st.markdown("""
+<div class="card">
+    <div class="card-title">📰 Investing.com · Opinion</div>
+    <div class="card-body">
+        Regular contributor to Investing.com Brasil, publishing articles on capital markets,
+        derivatives, and financial literacy.
+    </div>
+    <a href="https://br.investing.com/members/contributors/211720210/opinion"
+       target="_blank" style="font-size:0.8rem;">Read articles ↗</a>
+</div>
+""", unsafe_allow_html=True)
+
 # ── Awards & Certifications ───────────────────────────────────────────────────
 st.markdown('<div class="section-label">Awards, Certifications & Grants</div>', unsafe_allow_html=True)
 st.markdown("""
