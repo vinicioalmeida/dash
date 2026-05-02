@@ -19,7 +19,7 @@ with tab1:
 
     st.markdown("""
     <div class="card">
-        <div class="card-title">Corporate Sustainable Bonds in Brazil</div>
+        <div class="card-title">Corporate Sustainable Bonds in Brazil: Market Reactions and Spillover Effects</div>
         <div class="card-meta">with Camila Farias and Israel Felipe</div>
         <div class="card-body">
             Event study on 62 green bond issuances in the Brazilian market (2015–2024).
@@ -30,6 +30,8 @@ with tab1:
         <span class="tag">Green Bonds</span>
         <span class="tag">Event Study</span>
         <span class="tag">Sustainable Finance</span>
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6692059"
+           target="_blank" style="font-size:0.8rem;">Download on SSRN ↗</a>
     </div>
 
     <div class="card">
@@ -43,6 +45,8 @@ with tab1:
         <span class="tag">Volatility Scaling</span>
         <span class="tag">Portfolio Management</span>
         <span class="tag">Risk Targeting</span>
+        <a href="https://papers.ssrn.com/abstract=6692178"
+           target="_blank" style="font-size:0.8rem;">Download on SSRN ↗</a>
     </div>
     """, unsafe_allow_html=True)
 

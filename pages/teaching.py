@@ -61,14 +61,14 @@ for code, name, url, desc in courses_grad2:
 st.markdown('<div class="section-label">Distance Learning — EAD/UFRN</div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="card">
-    <div class="card-title">Matemática para Administradores</div>
-    <div class="card-body">
+    <div style="display:flex; justify-content:space-between; align-items:baseline;">
+        <div class="card-title">Matemática para Administradores</div>
+        <span class="tag">ADM0084</span>
+    </div>
+    <div class="card-body" style="margin-top:0.3rem;">
         Online course providing quantitative foundations for business administration students.
         Weekly guides covering financial mathematics and applied calculus.
     </div>
-    <span class="tag">EAD</span>
-    <span class="tag">Moodle</span>
-    <span class="tag">Undergraduate</span>
 </div>
 """, unsafe_allow_html=True)
 
