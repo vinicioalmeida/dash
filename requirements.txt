@@ -6,3 +6,4 @@ yfinance
 plotly==5.22.0
 scipy
 statsmodels
+python-bcb
