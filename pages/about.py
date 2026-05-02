@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.markdown('<div class="page-title">Vinicio Almeida</div>', unsafe_allow_html=True)
+st.markdown('<div class="page-title">Prof. Vinicio Almeida</div>', unsafe_allow_html=True)
 
 # ── Bio header ────────────────────────────────────────────────────────────────
 st.markdown("""
@@ -166,9 +166,9 @@ st.markdown('<div class="section-label">Awards, Certifications & Grants</div>', 
 st.markdown("""
 <div class="card">
     <div class="card-body">
-        Certified Portfolio Manager, <em>Comissão de Valores Mobiliários</em> — CVM · 2016<br>
-        Best Publication, National Association of Capital Markets Analysts and Investment Professionals (APIMEC), with Melquíades Júnior · 2014<br>
-        Grant on Investments Research, <em>Conselho Nacional de Desenvolvimento Científico e Tecnológico</em> — CNPq · 2012<br>
+        Certified Portfolio Manager, <em>Comissão de Valores Mobiliários</em> — CVM · 2016<br><br>
+        Best Publication, National Association of Capital Markets Analysts and Investment Professionals (APIMEC), with Melquíades Júnior · 2014<br><br>
+        Grant on Investments Research, <em>Conselho Nacional de Desenvolvimento Científico e Tecnológico</em> — CNPq · 2012<br><br>
         Best Thesis Project, National Association of Investment Banks (ANBIMA) · 2008
     </div>
 </div>
@@ -198,7 +198,8 @@ st.markdown('<div class="section-label">Personal</div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="card">
     <div class="card-body">
-        Brazilian, born 17 March 1980. Based in Natal, Rio Grande do Norte, Brazil.
+        Brazilian, born 17 March 1980. Based in Natal, Rio Grande do Norte, Brazil.<br><br>
+        Outside academia: rock climbing (active member of AERN — Associação de Escaladores do RN) and guitar playing.
     </div>
 </div>
 """, unsafe_allow_html=True)
