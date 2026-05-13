@@ -48,6 +48,24 @@ with tab1:
         <a href="https://papers.ssrn.com/abstract=6692178"
            target="_blank" style="font-size:0.8rem;">Download on SSRN ↗</a>
     </div>
+
+    <div class="card">
+        <div class="card-title">Liquidity of Debentures Traded on the Secondary Market: A Factor Analysis</div>
+        <div class="card-meta">with Robson Goes de Carvalho</div>
+        <div class="card-body">
+            Implements a Time Series Factor Analysis (TSFA) to construct a single factor
+            capturing multiple liquidity dimensions for debentures issued by Brazilian companies
+            and traded on the secondary market. The variables Assets, Trades, Volume, and Spread
+            were employed as liquidity proxies, with results showing a robust factor even after
+            excluding the Spread proxy due to its statistical insignificance.
+        </div>
+        <span class="tag">Liquidity</span>
+        <span class="tag">Debentures</span>
+        <span class="tag">Time Series</span>
+        <span class="tag">Factor Analysis</span>
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6760438"
+           target="_blank" style="font-size:0.8rem;">Download on SSRN ↗</a>
+    </div>
     """, unsafe_allow_html=True)
 
     st.markdown('<div class="section-label">Work in Progress</div>', unsafe_allow_html=True)
@@ -89,8 +107,6 @@ with tab2:
         </div>
     </div>
     """, unsafe_allow_html=True)
-
-
 
     st.markdown(
         "<div class=\"section-label\">Master\'s Students &mdash; Advisor</div>",
