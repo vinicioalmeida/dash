@@ -8,8 +8,9 @@ with tab1:
     articles = [
         ("2026",
          "Governan\u00e7a e sustentabilidade em hospitais universit\u00e1rios: o caso da MEJC/EBSERH",
-         "Forthcoming",
-         None, None),
+         "Farias, Almeida, Costa & Rodrigues Filho",
+         "ReGeo",
+         None),
         ("2025",
          "Observations and Inferences About the Fixed Cost in Protective Put Strategy",
          "Almeida & Almeida",
