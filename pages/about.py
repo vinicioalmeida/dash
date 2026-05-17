@@ -22,6 +22,7 @@ st.markdown("""
     <a href="http://lattes.cnpq.br/5861723290897089" target="_blank">Lattes CV</a>
     <a href="https://www.linkedin.com/in/vinicioalmeida" target="_blank">LinkedIn</a>
     <a href="https://github.com/vinicioalmeida" target="_blank">GitHub</a>
+    <a href="https://www.instagram.com/almeidavinicio/" target="_blank">Instagram</a>
     <a href="https://www.youtube.com/@almeidavinicio" target="_blank">YouTube</a>
     <a href="https://twitter.com/ovinicioalmeida" target="_blank">Twitter/X</a>
 </div>
