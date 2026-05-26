@@ -138,7 +138,7 @@ st.markdown("""
 <div class="card">
     <div class="card-body">
         <strong>Federal University at Rio Grande do Norte — UFRN</strong> · 2010–present<br>
-        Professor of Finance · DEPAD / PPGA ·
+        Full Professor of Finance · DEPAD / PPGA ·
         <a href="https://sigaa.ufrn.br/sigaa/public/docente/portal.jsf?siape=1802347"
            target="_blank" style="font-size:0.88rem;">Official UFRN page ↗</a><br><br>
         <strong>Banco do Brasil S.A.</strong> · 2000–2010<br>
