@@ -188,7 +188,7 @@ with tab2:
     st.markdown("""
     <div class="card">
         <div class="card-title">Investment Flows in Funds and the Economic Environment</div>
-        <div class="card-meta">Lemos &amp; Almeida</div>
+        <div class="card-meta">with Lemuel Lemos</div>
         <div class="card-body">
             Investigates the relationship between investment fund flows and economic variables
             using panel data models. Finds that investors adjust allocations depending on the
