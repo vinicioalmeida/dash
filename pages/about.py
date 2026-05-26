@@ -124,7 +124,7 @@ st.markdown('<div class="section-label">Education</div>', unsafe_allow_html=True
 st.markdown("""
 <div class="card">
     <div class="card-body">
-        <strong>D.Sc. in Business Administration (Finance)</strong><br>
+        <strong>Ph.D. in Business Administration (Finance)</strong><br>
         Coppead Graduate School of Business / Federal University at Rio de Janeiro — UFRJ · 2010<br><br>
         <strong>B.S. in Business Administration</strong><br>
         State University at Ceará — UECE · 2005
