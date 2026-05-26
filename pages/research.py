@@ -184,6 +184,24 @@ with tab2:
            target="_blank" style="font-size:0.8rem;">Download on SSRN \u2197</a>
     </div>
     """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="card">
+        <div class="card-title">Investment Flows in Funds and the Economic Environment</div>
+        <div class="card-meta">Lemos &amp; Almeida</div>
+        <div class="card-body">
+            Investigates the relationship between investment fund flows and economic variables
+            using panel data models. Finds that investors adjust allocations depending on the
+            economic environment, with stronger short-term reactions and greater sensitivity
+            to inflation variations across asset classes.
+        </div>
+        <span class="tag">Fund Flows</span>
+        <span class="tag">Asset Allocation</span>
+        <span class="tag">Panel Data</span>
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6831429"
+           target="_blank" style="font-size:0.8rem;">Download on SSRN ↗</a>
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown('<div class="section-label">Work in Progress</div>', unsafe_allow_html=True)
     st.markdown("""
     <div class="card">
