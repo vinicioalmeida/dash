@@ -140,7 +140,7 @@ section[data-testid="stSidebar"] span {
 }
 
 a { color: #1a3550; }
-#MainMenu, footer, header { visibility: hidden; }
+#MainMenu, footer { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)
 
