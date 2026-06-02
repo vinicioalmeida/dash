@@ -1,6 +1,11 @@
 import streamlit as st
 
-st.markdown('<div class="page-title">Finance Research Lab (GPFin)</div>', unsafe_allow_html=True)
+st.markdown('''
+<div class="page-title">Finance Research Lab (GPFin)</div>
+<div style="font-size:0.95rem; color:#8b8fa8; margin-top:-1rem; margin-bottom:1.5rem; letter-spacing:0.01em;">
+    Quantitative Finance Research Group at PPGA/UFRN, Brazil
+</div>
+''', unsafe_allow_html=True)
 
 # ── Institutional text ────────────────────────────────────────────────────────
 st.markdown("""
@@ -102,93 +107,224 @@ for title, status, desc in projects:
     </div>
     """, unsafe_allow_html=True)
 
-# ── Research Infrastructure ───────────────────────────────────────────────────
+# ── Research Infrastructure ───────────────────────────────────────────
 st.markdown('<div class="section-label">Research Infrastructure</div>', unsafe_allow_html=True)
+
+infra_items = [
+    ("🐧", "Linux research environment",
+     "All computational work runs on Linux, ensuring reproducibility and compatibility with production trading systems."),
+    ("🐍", "Python quantitative stack",
+     "pandas, numpy, scipy, statsmodels, arch, matplotlib, and plotly — covering the full pipeline from data cleaning to model estimation and visualization."),
+    ("📈", "MetaTrader 5 integration",
+     "Direct Python–MT5 bridge for options strategy prototyping, backtesting, and live execution via the Brazilian broker ecosystem."),
+    ("🗄️", "LSEG Workspace / Refinitiv",
+     "Institutional access to equity prices, analyst forecasts, fixed income data, and corporate fundamentals for the Brazilian market."),
+    ("📂", "B3 options database",
+     "Proprietary database of Brazilian options covering implied volatility surfaces, Greeks, open interest, and trade-level data — uncommon in Brazilian academic settings."),
+    ("📐", "SVI calibration framework",
+     "In-house implementation of the Stochastic Volatility Inspired (SVI) parameterization for fitting arbitrage-free volatility surfaces to B3 options data."),
+    ("🖥️", "Streamlit dashboards",
+     "Interactive research tools and teaching dashboards built in Streamlit, publicly accessible at vinicioalmeida.streamlit.app."),
+]
+
+col1, col2 = st.columns(2)
+for i, (icon, title, desc) in enumerate(infra_items):
+    with (col1 if i % 2 == 0 else col2):
+        st.markdown(f"""
+        <div class="card">
+            <div class="card-title">{icon} {title}</div>
+            <div class="card-body">{desc}</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+tags = ["Python", "Linux", "MetaTrader 5", "SQLite", "LSEG Workspace", "B3 Options", "SVI", "Streamlit", "GitHub"]
+tags_html = "".join(f'<span class="tag">{t}</span>' for t in tags)
+st.markdown(f'<div style="margin-bottom:1.5rem;">{tags_html}</div>', unsafe_allow_html=True)
+
+# ── Data & Research Resources ─────────────────────────────────────────────────
+st.markdown('<div class="section-label">Data & Research Resources</div>', unsafe_allow_html=True)
 
 st.markdown("""
 <div class="card">
-    <div class="card-body" style="line-height:2;">
-        Research at GPFin is conducted in a fully open-source, reproducible environment.
-        Quantitative workflows are built in <strong>Python</strong> (pandas, numpy, statsmodels, arch, scipy)
-        running on <strong>Linux</strong>, with data persistence in <strong>SQLite</strong>.
-        Options strategies are prototyped and executed via <strong>MetaTrader 5</strong> connected to the
-        Brazilian broker ecosystem. Market data is sourced from <strong>LSEG Workspace</strong>
-        (equities, fixed income, analyst forecasts) and a proprietary
-        <strong>B3 Options Database</strong> covering implied volatility surfaces and trade-level data.
-        Code and replication materials for published work are hosted on
-        <a href="https://github.com/ufrnfinancas" target="_blank">GitHub (ufrnfinancas) \u2197</a>.
+    <div class="card-body" style="line-height:1.9;">
+        GPFin operates with a level of research infrastructure that is uncommon among Brazilian finance groups.
+        This reflects years of investment in tools, data, and market experience:<br><br>
+        <strong>Proprietary infrastructure.</strong> All research pipelines are built and maintained in-house,
+        from raw data ingestion to model estimation and strategy execution. No black boxes.<br><br>
+        <strong>B3 options database.</strong> A live, structured database of Brazilian equity options —
+        covering implied volatility surfaces, Greeks, and trade-level microstructure data.
+        This type of dataset is rarely available to academic researchers in Brazil.<br><br>
+        <strong>Open code.</strong> Replication code for published and working papers is hosted on
+        <a href="https://github.com/ufrnfinancas" target="_blank">GitHub (ufrnfinancas) ↗</a>.
+        Teaching materials and course repositories are also public.<br><br>
+        <strong>Interactive dashboards.</strong> Research tools are deployed as live Streamlit applications,
+        making quantitative methods accessible to students and practitioners beyond the academic community.<br><br>
+        <strong>Practical market experience.</strong> The founding director has over 25 years of experience in finance, including ten years of prior industry practice
+        at Banco do Brasil in investment banking, equity fund management, and international finance —
+        bringing real-world judgment to empirical research design.
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-infra = ["Python", "Linux", "MetaTrader 5", "SQLite", "LSEG Workspace", "B3 Options Database", "GitHub"]
-tags_html = "".join(f'<span class="tag">{t}</span>' for t in infra)
-st.markdown(f'<div style="margin-top:-0.3rem; margin-bottom:1.5rem;">{tags_html}</div>', unsafe_allow_html=True)
+# ── Seminars ─────────────────────────────────────────────────────────────────────
+st.markdown('<div class="section-label">Seminars</div>', unsafe_allow_html=True)
 
-# ── Team ─────────────────────────────────────────────────────────────────────
+st.markdown("""
+<div class="card">
+    <div class="card-body" style="color:#9ca3af; font-style:italic;">
+        Upcoming seminars will be listed here. GPFin hosts visiting researchers and practitioners
+        for talks on quantitative finance, capital markets, and related topics.
+        If you are interested in giving a seminar, please get in touch.
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# ── Team ─────────────────────────────────────────────────────────────────────────────
 st.markdown('<div class="section-label">Team</div>', unsafe_allow_html=True)
 
 st.markdown("""
 <div class="card">
-    <div class="card-title">Vinicio Almeida &nbsp;<span style="font-weight:400; font-size:0.82rem; color:#8b8fa8;">Principal Investigator</span></div>
-    <div class="card-meta">Associate Professor of Finance · DEPAD/PPGA · UFRN</div>
+    <div class="card-title">Vinicio Almeida</div>
+    <div class="card-meta">Founding Director, Finance Research Lab (GPFin)</div>
+    <div class="card-meta">Full Professor of Finance · DEPAD/PPGA · UFRN</div>
     <div class="card-body">
         Ph.D. from UFRJ/Coppead. Post-doctoral research at UCLA Anderson School of Management.
         CVM-certified portfolio manager. Research in derivatives, quantitative investing, analyst rankings,
         and sustainable finance.
     </div>
-    <a href="https://vinicioalmeida.streamlit.app" target="_blank" style="font-size:0.8rem;">Personal site \u2197</a>
+    <a href="https://vinicioalmeida.streamlit.app" target="_blank" style="font-size:0.8rem;">Personal site ↗</a>
     &nbsp;&nbsp;
-    <a href="https://scholar.google.com.br/citations?user=S-KEieUAAAAJ&hl=pt-BR" target="_blank" style="font-size:0.8rem;">Google Scholar \u2197</a>
+    <a href="https://scholar.google.com.br/citations?user=S-KEieUAAAAJ&hl=pt-BR" target="_blank" style="font-size:0.8rem;">Google Scholar ↗</a>
 </div>
 """, unsafe_allow_html=True)
 
+st.markdown('<div class="section-label" style="font-size:0.95rem;">Faculty Researchers</div>', unsafe_allow_html=True)
 st.markdown("""
+<div class="card">
+    <div class="card-body">
+        <strong>Anderson Luiz Rezende Mól</strong><br>
+        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · DEPAD/PPGA · UFRN</span><br><br>
+        <strong>Israel José dos Santos Felipe</strong><br>
+        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · DEPAD/PPGA · UFRN</span><br><br>
+        <strong>Raimundo Marciano de Freitas Neto</strong><br>
+        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · DEPAD/PPGA · UFRN</span><br><br>
+        <strong>Robson Góes de Carvalho</strong><br>
+        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · UPE</span>
+    </div>
+</div>
 """, unsafe_allow_html=True)
 
-# ── Publications ──────────────────────────────────────────────────────────────
-st.markdown('<div class="section-label">Publications</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-label" style="font-size:0.95rem;">Students</div>', unsafe_allow_html=True)
 st.markdown("""
+<div class="card">
+    <div class="card-body">
+        GPFin has supervised more than <strong>70 students</strong> across undergraduate, master's, and doctoral programs at UFRN.
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+
+
+# ── Working Papers ───────────────────────────────────────────────────────────────
+st.markdown('<div class="section-label">Working Papers</div>', unsafe_allow_html=True)
+st.markdown('''
+<div class="card">
+    <div class="card-title">Corporate Sustainable Bonds in Brazil: Market Reactions and Spillover Effects</div>
+    <div class="card-meta">with Camila Farias and Israel Felipe</div>
+    <div class="card-body">Event study on 62 green bond issuances in Brazil (2015–2024). Negative CARs of −1.71% over 21-day windows. Winner of the ANBIMA Capital Markets Prize.</div>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6692059" target="_blank" style="font-size:0.8rem;">Download on SSRN ↗</a>
+</div>
+<div class="card">
+    <div class="card-title">Volatility Scaling in Multi-Asset Portfolios: Evidence from a Systematic Risk-Targeting Strategy</div>
+    <div class="card-meta">with Camila Farias</div>
+    <div class="card-body">Systematic risk-targeting strategy scaling portfolio weights by realized volatility across multiple asset classes.</div>
+    <a href="https://papers.ssrn.com/abstract=6692178" target="_blank" style="font-size:0.8rem;">Download on SSRN ↗</a>
+</div>
+<div class="card">
+    <div class="card-title">Investment Flows in Funds and the Economic Environment</div>
+    <div class="card-meta">with Lemuel Lemos</div>
+    <div class="card-body">Panel data models linking investment fund flows to macroeconomic variables in Brazil. Evidence of stronger short-term reactions and inflation sensitivity across asset classes.</div>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6831429" target="_blank" style="font-size:0.8rem;">Download on SSRN ↗</a>
+</div>
+<div class="card">
+    <div class="card-title">Straddle Profitability in Brazil: Volatility Risk Premium and Trading Windows in Emerging Market Options</div>
+    <div class="card-meta">Work in progress</div>
+    <div class="card-body">Profitability of straddle strategies in the Brazilian options market, focusing on the volatility risk premium and optimal trading windows.</div>
+</div>
+''', unsafe_allow_html=True)
+
+
+# ── Publications
+st.markdown('<div class="section-label">Publications</div>', unsafe_allow_html=True)
+st.markdown('''
 <div class="card">
     <div class="card-body">
         A full list of publications is available on
-        <a href="https://scholar.google.com.br/citations?user=S-KEieUAAAAJ&hl=pt-BR" target="_blank">Google Scholar \u2197</a>
+        <a href="https://scholar.google.com.br/citations?user=S-KEieUAAAAJ&hl=pt-BR" target="_blank">Google Scholar ↗</a>
         and
-        <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=681630" target="_blank">SSRN \u2197</a>.
+        <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=681630" target="_blank">SSRN ↗</a>.
     </div>
 </div>
-""", unsafe_allow_html=True)
+''', unsafe_allow_html=True)
 
-# ── Collaborate ───────────────────────────────────────────────────────────────
-st.markdown('<div class="section-label">Collaborate With Us</div>', unsafe_allow_html=True)
-st.markdown("""
+# ── International Collaborations
+st.markdown('<div class="section-label">International Collaborations</div>', unsafe_allow_html=True)
+st.markdown('''
 <div class="card">
     <div class="card-body">
-        We welcome collaboration with researchers in finance, economics, and data science —
-        particularly on topics related to emerging markets, derivatives, quantitative strategies,
-        and sustainable finance. If you are interested in joint research, visiting the group,
-        or co-supervising students, please get in touch.<br><br>
+        GPFin actively seeks research partnerships beyond Brazil. Current and prospective collaborations
+        include researchers and institutions in <strong>Europe</strong>, <strong>North America</strong>,
+        and <strong>Latin America</strong>, particularly on topics where Brazilian capital markets
+        offer unique empirical settings — options microstructure, emerging market volatility,
+        sustainable finance, and fund flow dynamics.
+    </div>
+</div>
+''', unsafe_allow_html=True)
+
+# ── Collaborate With Us
+st.markdown('<div class="section-label">Collaborate With Us</div>', unsafe_allow_html=True)
+st.markdown('''
+<div class="card">
+    <div class="card-body">
+        To discuss research collaboration, visiting arrangements, or data access,
+        please reach out directly:<br><br>
         <a href="mailto:vinicio.almeida@ufrn.br">vinicio.almeida@ufrn.br</a>
         &nbsp;&nbsp;
-        <a href="https://www.linkedin.com/in/vinicioalmeida" target="_blank">LinkedIn \u2197</a>
+        <a href="https://www.linkedin.com/in/vinicioalmeida" target="_blank">LinkedIn ↗</a>
         &nbsp;&nbsp;
-        <a href="http://dgp.cnpq.br/dgp/espelhogrupo/2623" target="_blank">CNPq DGP \u2197</a>
+        <a href="http://dgp.cnpq.br/dgp/espelhogrupo/2623" target="_blank">CNPq DGP ↗</a>
     </div>
 </div>
-""", unsafe_allow_html=True)
+''', unsafe_allow_html=True)
 
-# ── Location ──────────────────────────────────────────────────────────────────
+# ── Location
 st.markdown('<div class="section-label">Location</div>', unsafe_allow_html=True)
-st.markdown("""
+st.markdown('''
 <div class="card">
     <div class="card-body">
-        <strong>PPGA — Programa de P\u00f3s-Gradua\u00e7\u00e3o em Administra\u00e7\u00e3o</strong><br>
-        Centro de Ci\u00eancias Sociais Aplicadas (CCSA)<br>
+        <strong>PPGA — Programa de Pós-Graduação em Administração</strong><br>
+        Centro de Ciências Sociais Aplicadas (CCSA)<br>
         Universidade Federal do Rio Grande do Norte — UFRN<br>
         Natal, Rio Grande do Norte, Brazil<br><br>
-        <a href="https://www.google.com/maps/place/NEPSA+II/@-5.8379588,-35.2158204,2815m/data=!3m2!1e3!4b1!4m6!3m5!1s0x7b2ff9ebde92a07:0xd8769ed3ec115d1b!8m2!3d-5.8379804!4d-35.1973663!16s%2Fg%2F11cn2m98q9?entry=ttu&g_ep=EgoyMDI2MDUzMS4wIKXMDSoASAFQAw%3D%3D" target="_blank">View on Google Maps \u2197</a>
+        <a href="https://www.google.com/maps/place/NEPSA+II/@-5.8379588,-35.2158204,2815m/data=!3m2!1e3!4b1!4m6!3m5!1s0x7b2ff9ebde92a07:0xd8769ed3ec115d1b!8m2!3d-5.8379804!4d-35.1973663!16s%2Fg%2F11cn2m98q9?entry=ttu&g_ep=EgoyMDI2MDUzMS4wIKXMDSoASAFQAw%3D%3D" target="_blank">View on Google Maps ↗</a>
     </div>
 </div>
-""", unsafe_allow_html=True)
+''', unsafe_allow_html=True)
+
+# ── Institutional Affiliations
+st.markdown('<div class="section-label">Institutional Affiliation</div>', unsafe_allow_html=True)
+st.markdown(f'''
+<div class="card">
+    <div style="display:flex; align-items:center; gap:2rem; flex-wrap:wrap; padding:0.6rem 0;">
+        <img src="data:image/png;base64,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"
+             style="height:64px; object-fit:contain;">
+        <div style="color:#6b7280; font-size:0.88rem; line-height:1.7;">
+            <strong style="color:#0d1b2a;">Universidade Federal do Rio Grande do Norte</strong><br>
+            Programa de Pós-Graduação em Administração (PPGA)<br>
+            Natal, Rio Grande do Norte, Brazil
+        </div>
+    </div>
+</div>
+''', unsafe_allow_html=True)
 
 st.markdown('<div class="footer">GPFin · PPGA/UFRN · Natal, RN · Brazil</div>', unsafe_allow_html=True)
