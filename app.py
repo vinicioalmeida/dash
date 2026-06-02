@@ -11,13 +11,14 @@ st.set_page_config(
 about      = st.Page("pages/about.py",      title="About",            icon="👤", default=True)
 research   = st.Page("pages/research.py",   title="Research",         icon="📄")
 teaching   = st.Page("pages/teaching.py",   title="Teaching",         icon="🎓")
+gpfin      = st.Page("pages/gpfin.py",      title="Finance Research Lab (GPFin)", icon="🔬")
 course     = st.Page("pages/course.py",     title="Derivatives & Python", icon="🐍")
 tools      = st.Page("pages/tools.py",      title="Tools",            icon="🛠️")
 
 pg = st.navigation(
     {
         "": [about],
-        "Academic": [research, teaching],
+        "Academic": [research, teaching, gpfin],
         "Resources": [course, tools],
     },
     expanded=True,
