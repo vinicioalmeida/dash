@@ -107,31 +107,20 @@ for title, status, desc in projects:
     </div>
     """, unsafe_allow_html=True)
 
-# ── Research Infrastructure & Data Resources ────────────────────────────────────────
+# ── Research Infrastructure & Data Resources ──────────────────────────────
 st.markdown('<div class="section-label">Research Infrastructure & Data Resources</div>', unsafe_allow_html=True)
 
 st.markdown("""
 <div class="card">
-    <div class="card-body" style="line-height:1.9;">
-        GPFin operates with a level of research infrastructure that is uncommon among Brazilian finance groups.
-        This reflects years of investment in tools, data, and market experience:<br><br>
-        <strong>Proprietary infrastructure.</strong> All research pipelines are built and maintained in-house,
-        from raw data ingestion to model estimation and strategy execution. No black boxes.<br><br>
-        <strong>B3 options database.</strong> A live, structured database of Brazilian equity options —
-        covering implied volatility surfaces, Greeks, and trade-level microstructure data.
-        This type of dataset is rarely available to academic researchers in Brazil.<br><br>
-        <strong>Open code.</strong> Replication code for published and working papers is hosted on
+    <div class="card-body">
+        GPFin operates with a level of research infrastructure that is uncommon among Brazilian finance groups —
+        reflecting years of investment in tools, proprietary data, and practical market experience.
+        The founding director brings over 25 years in finance, including a decade of industry practice
+        at Banco do Brasil. Replication code is hosted on
         <a href="https://github.com/ufrnfinancas" target="_blank">GitHub (ufrnfinancas) ↗</a>.
-        Teaching materials and course repositories are also public.<br><br>
-        <strong>Interactive dashboards.</strong> Research tools are deployed as live Streamlit applications,
-        making quantitative methods accessible to students and practitioners beyond the academic community.<br><br>
-        <strong>Practical market experience.</strong> The founding director has over 25 years of experience
-        in finance, including ten years of prior industry practice at Banco do Brasil in investment banking,
-        equity fund management, and international finance — bringing real-world judgment to empirical research design.
     </div>
 </div>
 """, unsafe_allow_html=True)
-
 
 infra_items = [
     ("🐧", "Linux research environment",
