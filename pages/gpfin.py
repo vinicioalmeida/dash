@@ -12,7 +12,7 @@ st.markdown("""
 <div style="font-size:0.95rem; color:#3d4255; line-height:1.8; margin-bottom:1.5rem;">
     GPFin is a research group in Finance hosted at the
     <strong>Graduate School of Business (PPGA)</strong> of the
-    Federal University at Rio Grande do Norte (UFRN), Brazil.
+    Federal University of Rio Grande do Norte (UFRN), Brazil.
     The group conducts empirical and quantitative research on capital markets,
     derivatives, volatility, and sustainable finance, with a focus on
     the Brazilian market and its connections to international financial systems.
