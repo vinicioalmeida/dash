@@ -7,7 +7,7 @@ st.markdown("""
 <div style="font-size:1.02rem; color:#3d4255; line-height:1.7; margin-bottom:1.2rem;">
     Full Professor of Finance · <strong>UFRN/PPGA</strong><br>
     <span style="font-size:0.88rem; color:#8b8fa8;">
-        Graduate School of Business - Federal University of Rio Grande do Norte<br>
+        Graduate School of Business — Federal University of Rio Grande do Norte<br>
         Natal, Rio Grande do Norte, Brazil
     </span>
 </div>
@@ -66,10 +66,10 @@ with col3:
             GPFin — DEPAD/UFRN. Research in capital markets, quantitative finance,
             and sustainable finance. Registered at the CNPq Directory of Research Groups.
         </div>
-        <a href="http://dgp.cnpq.br/dgp/espelhogrupo/2623"
-           target="_blank" style="font-size:0.8rem;">CNPq DGP ↗</a>
+
     </div>
     """, unsafe_allow_html=True)
+    st.page_link("pages/gpfin.py", label="Finance Research Lab ↗")
 
 st.markdown("---")
 
@@ -137,8 +137,8 @@ st.markdown('<div class="section-label">Employment</div>', unsafe_allow_html=Tru
 st.markdown("""
 <div class="card">
     <div class="card-body">
-        <strong>Federal University at Rio Grande do Norte — UFRN</strong> · 2010–present<br>
-        Full Professor of Finance · DEPAD / PPGA ·
+        <strong>Federal University of Rio Grande do Norte — UFRN</strong> · 2010–present<br>
+        Professor of Finance · DEPAD / PPGA ·
         <a href="https://sigaa.ufrn.br/sigaa/public/docente/portal.jsf?siape=1802347"
            target="_blank" style="font-size:0.88rem;">Official UFRN page ↗</a><br><br>
         <strong>Banco do Brasil S.A.</strong> · 2000–2010<br>
