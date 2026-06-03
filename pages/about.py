@@ -5,7 +5,7 @@ st.markdown('<div class="page-title">Prof. Vinicio Almeida</div>', unsafe_allow_
 # ── Bio header ────────────────────────────────────────────────────────────────
 st.markdown("""
 <div style="font-size:1.02rem; color:#3d4255; line-height:1.7; margin-bottom:1.2rem;">
-    Associate Professor of Finance · <strong>UFRN/PPGA</strong><br>
+    Full Professor of Finance · <strong>UFRN/PPGA</strong><br>
     <span style="font-size:0.88rem; color:#8b8fa8;">
         Graduate School of Business — Federal University at Rio Grande do Norte<br>
         Natal, Rio Grande do Norte, Brazil
