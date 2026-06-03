@@ -300,8 +300,7 @@ st.markdown('''
         GPFin actively seeks research partnerships beyond Brazil. Current and prospective collaborations
         include researchers and institutions in <strong>Europe</strong>, <strong>North America</strong>,
         and <strong>Latin America</strong>, particularly on topics where Brazilian capital markets
-        offer unique empirical settings — options microstructure, emerging market volatility,
-        sustainable finance, and fund flow dynamics.
+        offer unique empirical settings — options microstructure, emerging market volatility, and sustainable finance.
     </div>
 </div>
 ''', unsafe_allow_html=True)
