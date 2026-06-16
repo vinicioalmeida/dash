@@ -185,6 +185,7 @@ st.markdown("""
         <em>Applied Financial Economics</em>, <em>Brazilian Business Review</em>,
         <em>Brazilian Review of Finance</em>, <em>Revista de Administração Mackenzie</em>,
         <em>The Quarterly Review of Economics and Finance</em>, and others.<br><br>
+        <strong>Accepted activities</strong> include <em>Building Quantitative Trading Strategies with Artificial Intelligence: From Idea to Forward Testing in Derivatives</em> (EnANPAD 2026).<br><br>
         <strong>Ad-hoc reviewer and presenter</strong> at AIB Annual Meeting, Balas Annual Conference,
         Enanpad Meeting, Encontro Brasileiro de Finanças, Midwest Finance Association Annual Meeting,
         EFMA Annual Meeting.<br><br>

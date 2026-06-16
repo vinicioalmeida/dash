@@ -192,14 +192,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Seminars ─────────────────────────────────────────────────────────────────────
-st.markdown('<div class="section-label">Seminars</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-label">Seminars, Workshops & Academic Activities</div>', unsafe_allow_html=True)
 
 st.markdown("""
 <div class="card">
-    <div class="card-body" style="color:#9ca3af; font-style:italic;">
-        Upcoming seminars will be listed here. GPFin hosts visiting researchers and practitioners
-        for talks on quantitative finance, capital markets, and related topics.
-        If you are interested in giving a seminar, please get in touch.
+    <div class="card-title">EnANPAD 2026 &mdash; Accepted Academic Activity</div>
+    <div class="card-body">
+        <em>Building Quantitative Trading Strategies with Artificial Intelligence:
+        From Idea to Forward Testing in Derivatives</em>
     </div>
 </div>
 """, unsafe_allow_html=True)
