@@ -217,7 +217,21 @@ with tab2:
         <span class="tag">Straddle</span>
         <span class="tag">Brazil</span>
     </div>
+    <div class="card">
+        <div class="card-title">SVI Surface Calibration with Asymmetric Liquidity Weights: A Two-Surface Architecture for Emerging Market Options</div>
+        <div class="card-meta">Work in progress</div>
+        <div class="card-body">
+            Proposes a two-surface SVI calibration framework that incorporates asymmetric liquidity weights
+            to improve volatility surface fitting in markets with sparse and uneven option liquidity,
+            such as the Brazilian options market (B3).
+        </div>
+        <span class="tag">SVI</span>
+        <span class="tag">Volatility Surface</span>
+        <span class="tag">Emerging Markets</span>
+        <span class="tag">B3</span>
+    </div>
     """, unsafe_allow_html=True)
+
 
 with tab3:
     st.markdown('<div class="section-label">Doctoral Students \u2014 Advisor</div>', unsafe_allow_html=True)
