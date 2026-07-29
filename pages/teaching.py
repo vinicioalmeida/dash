@@ -62,12 +62,22 @@ st.markdown('<div class="section-label">Distance Learning — EAD/UFRN</div>', u
 st.markdown("""
 <div class="card">
     <div style="display:flex; justify-content:space-between; align-items:baseline;">
-        <div class="card-title">Matemática para Administradores</div>
+        <div class="card-title">Mathematics for Business Administration</div>
         <span class="tag">ADM0084</span>
     </div>
     <div class="card-body" style="margin-top:0.3rem;">
         Online course providing quantitative foundations for business administration students.
         Weekly guides covering financial mathematics and applied calculus.
+    </div>
+</div>
+<div class="card">
+    <div style="display:flex; justify-content:space-between; align-items:baseline;">
+        <div class="card-title">Applied Statistics for Business Administration</div>
+        <span class="tag">ADM0067</span>
+    </div>
+    <div class="card-body" style="margin-top:0.3rem;">
+        Distance learning course covering descriptive statistics, probability, statistical inference,
+        and regression analysis applied to business and management contexts.
     </div>
 </div>
 """, unsafe_allow_html=True)
