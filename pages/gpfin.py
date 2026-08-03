@@ -228,11 +228,11 @@ st.markdown("""
 <div class="card">
     <div class="card-body">
         <strong>Anderson Luiz Rezende Mól</strong><br>
-        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · DEPAD/PPGA · UFRN</span><br><br>
+        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · PPGA · UFRN</span><br><br>
         <strong>Israel José dos Santos Felipe</strong><br>
-        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · DEPAD/PPGA · UFRN</span><br><br>
+        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · PPGA · UFRN</span><br><br>
         <strong>Raimundo Marciano de Freitas Neto</strong><br>
-        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · DEPAD/PPGA · UFRN</span><br><br>
+        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · PPGCCon · UFRN</span><br><br>
         <strong>Robson Góes de Carvalho</strong><br>
         <span style="color:#8b8fa8; font-size:0.82rem;">Professor · UPE</span>
     </div>
