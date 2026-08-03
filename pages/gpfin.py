@@ -234,7 +234,7 @@ st.markdown("""
         <strong>Raimundo Marciano de Freitas Neto</strong><br>
         <span style="color:#8b8fa8; font-size:0.82rem;">Professor · PPGCCon · UFRN</span><br><br>
         <strong>Robson Góes de Carvalho</strong><br>
-        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · UPE</span>
+        <span style="color:#8b8fa8; font-size:0.82rem;">Professor · UPE</span><br><br>
         <strong>Marcelo Daniel Araújo Ermel </strong><br>
         <span style="color:#8b8fa8; font-size:0.82rem;">Professor · Mackenzie</span>
     </div>
