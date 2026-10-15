@@ -63,8 +63,8 @@ with col3:
     <div class="card">
         <div class="card-title">🔬 Research Group in Finance</div>
         <div class="card-body">
-            GPFin — DEPAD/UFRN. Research in capital markets, quantitative finance,
-            and sustainable finance. Registered at the CNPq Directory of Research Groups.
+            GPFin — PPGA/UFRN. Research in derivatives, macrofinance, quantitative finance,
+            alternative finance, and sustainable capital markets. Registered at the CNPq Directory of Research Groups.
         </div>
 
     </div>
